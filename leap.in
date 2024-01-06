@@ -1,0 +1,19 @@
+source leaprc.gaff
+source leaprc.water.tip3p
+source oldff/leaprc.ff99SBildn
+loadamberparams lig.frcmod
+loadamberparams heme.frcmod
+HEM = loadmol2 heme.mol2
+UNK = loadmol2 UNK.mol2
+check HEM
+check UNK
+saveamberparm HEM heme.prmtop heme.inpcrd
+saveamberparm UNK lig.prmtop lig.inpcrd
+saveoff UNK lig.lib
+saveoff HEM heme.lib
+loadoff lig.lib
+loadoff heme.lib
+b=loadpdb comp_noh.pdb
+addition b cl- 0
+addition b Na+ 0
+saveamberparm b solv.prmtop solv.incrd
